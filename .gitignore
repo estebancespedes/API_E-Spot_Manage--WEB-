@@ -1,0 +1,5 @@
+*__pycache__ #cache de python
+
+.env    # archivo env con credenciales secretas
+
+venv    # entrono virtual
