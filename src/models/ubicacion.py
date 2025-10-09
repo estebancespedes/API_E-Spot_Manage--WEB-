@@ -24,6 +24,7 @@ class ubicacion(Base):
             id_usuario_edita : UUID
             fecha_edita : Datetime
     """
+    __tablename__ = 'ubicacion'
 
     id_ubicacion = Column(UUID, primary_key=True, default=uuid4())
     direccion = Column(VARCHAR(50), nullable=False)
@@ -38,4 +39,5 @@ class ubicacion(Base):
 
     # relaciones
     ciudad = relationship("ciudad", back_populates="ubicaciones")
-    # agregar las 3 relaciones faltantes
+    puntos_interes = relationship('punto interes', back_populates='ubicacion')
+    # agregar las 2 relaciones faltantes
