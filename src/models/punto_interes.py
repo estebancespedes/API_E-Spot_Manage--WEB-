@@ -37,5 +37,5 @@ class punto_interes(Base):
 
     # relaciones
     ubicacion = relationship("ubicacion", back_populates="puntos_interes")
-    imagenes_PI = relationship('imagen PI', back_populates='punto_interes')
+    imagenes_PI = relationship("imagen PI", back_populates="punto_interes")
     # agregar 1 relacion mas
