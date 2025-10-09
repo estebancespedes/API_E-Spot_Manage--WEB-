@@ -15,6 +15,7 @@ class pais(Base):
             id_pais : UUID
             nombre : varchar(50)
     """
+    __tablename__ = 'pais'
 
     id_pais = Column(UUID, primary_key=True, default=uuid4())
     nombre = Column(VARCHAR(50), index=True, nullable=False)
