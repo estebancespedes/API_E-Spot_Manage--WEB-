@@ -1,6 +1,6 @@
 # importaciones de librerias
 from turtle import back
-from sqlalchemy import Column, UUID, TEXT, ForeignKey, VARCHAR, Nullable
+from sqlalchemy import Column, UUID, TEXT, ForeignKey, VARCHAR
 from sqlalchemy.orm import relationship
 from uuid import uuid4
 
@@ -18,8 +18,9 @@ class ciudad(Base):
             nombre : varchar(50)
             descripcion : TEXT
     """
-    __tablename__ = 'ciudad'
-    
+
+    __tablename__ = "ciudad"
+
     id_ciudad = Column(UUID, primary_key=False, default=uuid4())
     id_pais = Column(UUID, ForeignKey("region.id_region"), nullable=False)
     nombre = Column(VARCHAR(50), nullable=False)

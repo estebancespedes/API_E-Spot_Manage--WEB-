@@ -1,6 +1,6 @@
 # importacion de librerias
 from datetime import datetime
-from sqlalchemy import Column, UUID, ForeignKey, VARCHAR, FLOAT, DATETIME, Nullable
+from sqlalchemy import Column, UUID, ForeignKey, VARCHAR, FLOAT, DATETIME
 from sqlalchemy.orm import relationship
 from uuid import uuid4
 
@@ -24,7 +24,8 @@ class ubicacion(Base):
             id_usuario_edita : UUID
             fecha_edita : Datetime
     """
-    __tablename__ = 'ubicacion'
+
+    __tablename__ = "ubicacion"
 
     id_ubicacion = Column(UUID, primary_key=True, default=uuid4())
     direccion = Column(VARCHAR(50), nullable=False)
@@ -39,5 +40,5 @@ class ubicacion(Base):
 
     # relaciones
     ciudad = relationship("ciudad", back_populates="ubicaciones")
-    puntos_interes = relationship('punto interes', back_populates='ubicacion')
+    puntos_interes = relationship("punto interes", back_populates="ubicacion")
     # agregar las 2 relaciones faltantes

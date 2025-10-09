@@ -16,7 +16,8 @@ class region(Base):
         id_pais : UUID
         nombre : varchar(50)
     """
-    __tablename__ = 'region'
+
+    __tablename__ = "region"
 
     id_region = Column(UUID, primary_key=True, default=uuid4())
     id_pais = Column(UUID, ForeignKey("pais.id_pais"), nullable=False)
