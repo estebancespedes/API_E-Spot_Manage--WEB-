@@ -1,6 +1,6 @@
 # importacciones de librerias
 from sqlalchemy import Column, UUID, VARCHAR
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import Relationship
 from uuid import uuid4
 
 # importacion de base model
@@ -22,4 +22,4 @@ class pais(Base):
     nombre = Column(VARCHAR(50), index=True, nullable=False)
 
     # relaciones
-    regiones = relationship("region", back_populates="pais")
+    regiones = Relationship("region", back_populates="pais")

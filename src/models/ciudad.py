@@ -1,7 +1,7 @@
 # importaciones de librerias
 from turtle import back
 from sqlalchemy import Column, UUID, TEXT, ForeignKey, VARCHAR
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import Relationship
 from uuid import uuid4
 
 # importacion del modelo base
@@ -27,6 +27,6 @@ class ciudad(Base):
     descripcion = Column(TEXT, nullable=False)
 
     # relaciones
-    region = relationship("region", back_populates="ciudades")
+    region = Relationship("region", back_populates="ciudades")
 
-    ubicaciones = relationship("ubicacion", back_populates="ciudad")
+    ubicaciones = Relationship("ubicacion", back_populates="ciudad")
