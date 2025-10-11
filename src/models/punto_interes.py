@@ -1,7 +1,7 @@
 # importaciones de librerias
 from datetime import datetime
 from sqlalchemy import Column, UUID, DateTime, ForeignKey, VARCHAR, TEXT
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import Relationship
 from uuid import uuid4
 
 # importacion del modelo base
@@ -23,7 +23,7 @@ class punto_interes(Base):
             -fecha_edita : foreignkey id_usuario
     """
 
-    __tablename__ = "punto interes"
+    __tablename__ = "punto_interes"
 
     id_punto_interes = Column(UUID, primary_key=True, default=uuid4())
     nombre = Column(VARCHAR(50), nullable=False)
@@ -36,6 +36,11 @@ class punto_interes(Base):
     fecha_edita = Column(DateTime, nullable=True, onupdate=datetime.now())
 
     # relaciones
-    ubicacion = relationship("ubicacion", back_populates="puntos_interes")
-    imagenes_PI = relationship("imagen PI", back_populates="punto_interes")
-    # agregar 1 relacion mas
+    ubicacion = Relationship("ubicacion", back_populates="puntos_interes")
+    imagenes_PI = Relationship("imagen_PI", back_populates="punto_interes")
+    usuario_creacion = Relationship(
+        "usuario", foreign_keys=[id_usuario_crea], back_populates="puntos_interes_creados"
+    )
+    usuario_edicion = Relationship(
+        "usuario", foreign_keys=[id_usuario_edita], back_populates="puntos_interes_editados"
+    )
