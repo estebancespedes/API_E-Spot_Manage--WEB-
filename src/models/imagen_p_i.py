@@ -30,14 +30,9 @@ class imagen_p_i(Base):
     url = Column(VARCHAR(100), nullable=False)
     id_usuario_crea = Column(UUID, ForeignKey("usuario.id_usuario"), nullable=False)
     fecha_crea = Column(DateTime, default=datetime.now(), nullable=False)
-    id_usuario_edita = Column(UUID, ForeignKey("usuario.id_usuario"), nullable=True)
-    fecha_edita = Column(DateTime, nullable=True, onupdate=datetime.now())
 
     # relaciones
     punto_interes = Relationship("punto_interes", back_populates="imagenes_PI")
     usuario_creacion = Relationship(
         "usuario", foreign_keys=[id_usuario_crea], back_populates="imagenes_pi_creadas"
-    )
-    usuario_edicion = Relationship(
-        "usuario", foreign_keys=[id_usuario_edita], back_populates="imagenes_pi_editadas"
     )
