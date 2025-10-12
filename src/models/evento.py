@@ -1,12 +1,12 @@
 # importaciones de librerias
 from datetime import datetime
-from sqlalchemy import Column, UUID, VARCHAR, TEXT, DATETIME, FLOAT, ForeignKey
+from sqlalchemy import Column, UUID, VARCHAR, TEXT, DateTime, FLOAT, ForeignKey
 from uuid import uuid4
 
 from sqlalchemy.orm import Relationship
 
 # importación del modelo base
-from models.relaciones_tablas import organizaciones_eventos, eventos_ubicaciones
+from src.models.relaciones_tablas import organizaciones_eventos, eventos_ubicaciones
 from src.database.base_class import Base
 
 
@@ -32,14 +32,14 @@ class evento(Base):
     id_evento = Column(UUID, primary_key=True, default=uuid4())
     nombre = Column(VARCHAR(50), nullable=False)
     descripcion = Column(TEXT, nullable=True)
-    fecha_inicio = Column(DATETIME, nullable=False)
-    fecha_fin = Column(DATETIME, nullable=False)
+    fecha_inicio = Column(DateTime, nullable=False)
+    fecha_fin = Column(DateTime, nullable=False)
     url_info = Column(VARCHAR(100), nullable=True)
     valor = Column(FLOAT, nullable=True)
     id_usuario_crea = Column(UUID, ForeignKey("usuario.id_usuario"), nullable=False)
-    fecha_creacion = Column(DATETIME, nullable=False, default=datetime.now())
+    fecha_creacion = Column(DateTime, nullable=False, default=datetime.now())
     id_usuario_edita = Column(UUID, ForeignKey("usuario.id_usuario"), nullable=True)
-    fecha_edicion = Column(DATETIME, nullable=True, onupdate=datetime.now())
+    fecha_edicion = Column(DateTime, nullable=True, onupdate=datetime.now())
 
     # agregar relaciones
     imagenes = Relationship("imagen_evento", back_populates="evento")

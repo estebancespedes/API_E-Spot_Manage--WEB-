@@ -1,5 +1,5 @@
 # importaciones de librerias
-from sqlalchemy import Column, UUID, VARCHAR, TEXT, ForeignKey
+from sqlalchemy import Column, UUID, VARCHAR
 from uuid import uuid4
 
 from sqlalchemy.orm import relationship

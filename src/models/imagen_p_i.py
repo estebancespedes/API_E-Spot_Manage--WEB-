@@ -25,7 +25,7 @@ class imagen_p_i(Base):
 
     id_imagen = Column(UUID, primary_key=True, default=uuid4())
     id_punto_interes = Column(
-        UUID, ForeignKey("punto interes.id_punto_interes"), nullable=False
+        UUID, ForeignKey("punto_interes.id_punto_interes"), nullable=False
     )
     url = Column(VARCHAR(100), nullable=False)
     id_usuario_crea = Column(UUID, ForeignKey("usuario.id_usuario"), nullable=False)

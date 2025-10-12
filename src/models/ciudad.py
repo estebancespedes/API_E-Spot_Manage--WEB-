@@ -21,7 +21,7 @@ class ciudad(Base):
 
     __tablename__ = "ciudad"
 
-    id_ciudad = Column(UUID, primary_key=False, default=uuid4())
+    id_ciudad = Column(UUID, primary_key=True, default=uuid4())
     id_pais = Column(UUID, ForeignKey("region.id_region"), nullable=False)
     nombre = Column(VARCHAR(50), nullable=False)
     descripcion = Column(TEXT, nullable=False)

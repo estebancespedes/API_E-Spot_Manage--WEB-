@@ -1,6 +1,6 @@
 # importaciones de librerias
 from datetime import datetime
-from sqlalchemy import Column, UUID, VARCHAR, DATETIME, ForeignKey
+from sqlalchemy import Column, UUID, VARCHAR, DateTime, ForeignKey
 from uuid import uuid4
 
 from sqlalchemy.orm import Relationship
@@ -26,7 +26,7 @@ class imagen_evento(Base):
     url = Column(VARCHAR(100), nullable=False)
     id_evento = Column(UUID, nullable=False)
     id_usuario_crea = Column(UUID, ForeignKey("usuario.id_usuario"), nullable=False)
-    fecha_creacion = Column(DATETIME, nullable=False, default=datetime.now())
+    fecha_creacion = Column(DateTime, nullable=False, default=datetime.now())
 
     # agregar relaciones
     evento = Relationship("evento", back_populates="imagenes")

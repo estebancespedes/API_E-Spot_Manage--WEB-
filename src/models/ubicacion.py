@@ -1,11 +1,11 @@
 # importacion de librerias
 from datetime import datetime
-from sqlalchemy import Column, UUID, ForeignKey, VARCHAR, FLOAT, DATETIME
+from sqlalchemy import Column, UUID, ForeignKey, VARCHAR, FLOAT, DateTime
 from sqlalchemy.orm import Relationship
 from uuid import uuid4
 
 # importacion de modelo base
-from models.relaciones_tablas import eventos_ubicaciones
+from src.models.relaciones_tablas import eventos_ubicaciones
 from src.database.base_class import Base
 
 
@@ -35,9 +35,9 @@ class ubicacion(Base):
     latitud = Column(FLOAT, nullable=False)
     longitud = Column(FLOAT, nullable=False)
     id_usuario_crea = Column(UUID, ForeignKey("usuario.id_usuario"), nullable=False)
-    fecha_crea = Column(DATETIME, nullable=False, default=datetime.now())
+    fecha_crea = Column(DateTime, nullable=False, default=datetime.now())
     id_usuario_edita = Column(UUID, ForeignKey("usuario.id_usuario"), nullable=True)
-    fecha_edita = Column(DATETIME, nullable=True, onupdate=datetime.now())
+    fecha_edita = Column(DateTime, nullable=True, onupdate=datetime.now())
 
     # relaciones
     ciudad = Relationship("ciudad", back_populates="ubicaciones")

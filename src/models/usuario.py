@@ -5,7 +5,6 @@ from uuid import uuid4
 from sqlalchemy.orm import Relationship
 
 # importación del modelo base
-from models import organizacion
 from src.database.base_class import Base
 
 

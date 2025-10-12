@@ -1,11 +1,11 @@
 # importaciones de librerias
-from sqlalchemy import Column, UUID, VARCHAR, TEXT, ForeignKey
+from sqlalchemy import Column, UUID, VARCHAR
 from uuid import uuid4
 
 from sqlalchemy.orm import Relationship
 
 # importación del modelo base
-from models.relaciones_tablas import organizaciones_eventos
+from src.models.relaciones_tablas import organizaciones_eventos
 from src.database.base_class import Base
 
 
