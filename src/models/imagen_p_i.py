@@ -33,6 +33,4 @@ class imagen_p_i(Base):
 
     # relaciones
     punto_interes = Relationship("punto_interes", back_populates="imagenes_PI")
-    usuario_creacion = Relationship(
-        "usuario", foreign_keys=[id_usuario_crea], back_populates="imagenes_pi_creadas"
-    )
+    usuario_creacion = Relationship("usuario", back_populates="imagenes_pi_creadas")
