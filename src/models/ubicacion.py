@@ -1,10 +1,11 @@
 # importacion de librerias
 from datetime import datetime
 from sqlalchemy import Column, UUID, ForeignKey, VARCHAR, FLOAT, DATETIME
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import Relationship
 from uuid import uuid4
 
 # importacion de modelo base
+from models.relaciones_tablas import eventos_ubicaciones
 from src.database.base_class import Base
 
 
@@ -39,6 +40,16 @@ class ubicacion(Base):
     fecha_edita = Column(DATETIME, nullable=True, onupdate=datetime.now())
 
     # relaciones
-    ciudad = relationship("ciudad", back_populates="ubicaciones")
-    puntos_interes = relationship("punto interes", back_populates="ubicacion")
-    # agregar las 2 relaciones faltantes
+    ciudad = Relationship("ciudad", back_populates="ubicaciones")
+    puntos_interes = Relationship("punto interes", back_populates="ubicacion")
+    usuario_creacion = Relationship(
+        "usuario", foreign_keys=[id_usuario_crea], back_populates="ubicaciones_creadas"
+    )
+    usuario_edicion = Relationship(
+        "usuario",
+        foreign_keys=[id_usuario_edita],
+        back_populates="ubicaciones_editadas",
+    )
+    eventos = Relationship(
+        "eventos", secondary=eventos_ubicaciones, back_populates="ubicaciones"
+    )
