@@ -30,4 +30,4 @@ class imagen_evento(Base):
 
     # agregar relaciones
     evento = Relationship('evento', back_populates='imagenes')
-    usuario_crea = Relationship('usuario', back_populates='imagenes_creadas')
+    usuario_crea = Relationship('usuario', back_populates='imagenes_eventos_creadas')
