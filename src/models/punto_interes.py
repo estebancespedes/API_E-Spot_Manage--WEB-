@@ -39,8 +39,12 @@ class punto_interes(Base):
     ubicacion = Relationship("ubicacion", back_populates="puntos_interes")
     imagenes_PI = Relationship("imagen_PI", back_populates="punto_interes")
     usuario_creacion = Relationship(
-        "usuario", foreign_keys=[id_usuario_crea], back_populates="puntos_interes_creados"
+        "usuario",
+        foreign_keys=[id_usuario_crea],
+        back_populates="puntos_interes_creados",
     )
     usuario_edicion = Relationship(
-        "usuario", foreign_keys=[id_usuario_edita], back_populates="puntos_interes_editados"
+        "usuario",
+        foreign_keys=[id_usuario_edita],
+        back_populates="puntos_interes_editados",
     )

@@ -49,3 +49,9 @@ class evento(Base):
     organizaciones = Relationship(
         "organizacion", secondary=organizaciones_eventos, back_populates="eventos"
     )
+    usuario_creacion = Relationship(
+        "usuario", foreign_keys=[id_usuario_crea], back_populates="eventos_creados"
+    )
+    usuario_edicion = Relationship(
+        "usuario", foreign_keys=[id_usuario_edita], back_populates="eventos_editados"
+    )
