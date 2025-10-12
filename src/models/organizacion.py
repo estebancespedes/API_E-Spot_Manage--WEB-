@@ -5,7 +5,7 @@ from uuid import uuid4
 from sqlalchemy.orm import Relationship
 
 # importación del modelo base
-from models.relaciones_tablas import Organizaciones_eventos
+from models.relaciones_tablas import organizaciones_eventos
 from src.database.base_class import Base
 
 
@@ -23,5 +23,5 @@ class organizacion(Base):
     # relaciones
     usuarios = Relationship("usuario", back_populates="organizacion")
     eventos = Relationship(
-        "evento", secondary=Organizaciones_eventos, back_populates="organizaciones"
+        "evento", secondary=organizaciones_eventos, back_populates="organizaciones"
     )
