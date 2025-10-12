@@ -1,1 +1,12 @@
-#importar todos los modelos
+from src.models.ciudad import ciudad
+from src.models.evento import evento
+from src.models.imagen_evento import imagen_evento
+from src.models.imagen_p_i import imagen_p_i
+from src.models.organizacion import organizacion
+from src.models.pais import pais
+from src.models.punto_interes import punto_interes
+from src.models.region import region
+from src.models.relaciones_tablas import organizaciones_eventos, eventos_ubicaciones
+from src.models.rol import rol
+from src.models.ubicacion import ubicacion
+from src.models.usuario import usuario

@@ -8,7 +8,7 @@ from alembic import context
 import os
 from dotenv import load_dotenv
 from src.database.base_class import Base
-from src import models
+from src.database import models
 
 load_dotenv()
 config = context.config
