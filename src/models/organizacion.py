@@ -1,5 +1,5 @@
 # importaciones de librerias
-from sqlalchemy import Column, UUID, VARCHAR
+from sqlalchemy import Column, UUID, VARCHAR, BOOLEAN
 from uuid import uuid4
 
 from sqlalchemy.orm import Relationship
@@ -19,6 +19,7 @@ class organizacion(Base):
 
     id_organizacion = Column(UUID, primary_key=True, default=uuid4())
     nombre = Column(VARCHAR(50), nullable=False)
+    is_verified = Column(BOOLEAN, nullable=False, default=False)
 
     # relaciones
     usuarios = Relationship("usuario", back_populates="organizacion")
