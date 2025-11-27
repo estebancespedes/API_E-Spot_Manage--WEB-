@@ -7,6 +7,8 @@ from sqlalchemy.orm import Relationship
 # importación del modelo base
 from src.database.base_class import Base
 
+from src.models.relaciones_tablas import usuarios_eventos
+
 
 class usuario(Base):
     """
@@ -82,4 +84,8 @@ class usuario(Base):
         "punto_interes",
         foreign_keys="[punto_interes.id_usuario_edita]",
         back_populates="usuario_edicion",
+    )
+
+    eventos = Relationship(
+        "evento", secondary=usuarios_eventos, back_populates="usuarios"
     )

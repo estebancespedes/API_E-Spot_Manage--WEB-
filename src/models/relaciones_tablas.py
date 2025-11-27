@@ -7,7 +7,7 @@ eventos_ubicaciones = Table(
     Column("id_evento", UUID, ForeignKey("evento.id_evento"), primary_key=True),
     Column(
         "id_ubicacion", UUID, ForeignKey("ubicacion.id_ubicacion"), primary_key=True
-    )
+    ),
 )
 
 organizaciones_eventos = Table(
@@ -19,7 +19,12 @@ organizaciones_eventos = Table(
         UUID,
         ForeignKey("organizacion.id_organizacion"),
         primary_key=True,
-    )
+    ),
 )
 
-
+usuarios_eventos = Table(
+    "usuarios_eventos",
+    Base.metadata,
+    Column("id_usuario", UUID, ForeignKey("usuario.id_usuario"), primary_key=True),
+    Column("id_evento", UUID, ForeignKey("evento.id_evento"), primary_key=True),
+)

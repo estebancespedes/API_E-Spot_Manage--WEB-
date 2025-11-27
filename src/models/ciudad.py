@@ -14,7 +14,7 @@ class ciudad(Base):
         Usada como directorio de ciudades
         Atributos
             id_ciudad : UUID
-            id_pais : UUID
+            id_region : UUID
             nombre : varchar(50)
             descripcion : TEXT
     """
@@ -22,7 +22,7 @@ class ciudad(Base):
     __tablename__ = "ciudad"
 
     id_ciudad = Column(UUID, primary_key=True, default=uuid4())
-    id_pais = Column(UUID, ForeignKey("region.id_region"), nullable=False)
+    id_region = Column(UUID, ForeignKey("region.id_region"), nullable=False)
     nombre = Column(VARCHAR(50), nullable=False)
     descripcion = Column(TEXT, nullable=False)
 

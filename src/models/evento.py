@@ -6,7 +6,7 @@ from uuid import uuid4
 from sqlalchemy.orm import Relationship
 
 # importación del modelo base
-from src.models.relaciones_tablas import organizaciones_eventos, eventos_ubicaciones
+from src.models.relaciones_tablas import organizaciones_eventos, eventos_ubicaciones, usuarios_eventos
 from src.database.base_class import Base
 
 
@@ -41,7 +41,7 @@ class evento(Base):
     id_usuario_edita = Column(UUID, ForeignKey("usuario.id_usuario"), nullable=True)
     fecha_edicion = Column(DateTime, nullable=True, onupdate=datetime.now())
 
-    # agregar relaciones
+    # relaciones
     imagenes = Relationship("imagen_evento", back_populates="evento")
     ubicaciones = Relationship(
         "ubicacion", secondary=eventos_ubicaciones, back_populates="eventos"
@@ -54,4 +54,8 @@ class evento(Base):
     )
     usuario_edicion = Relationship(
         "usuario", foreign_keys=[id_usuario_edita], back_populates="eventos_editados"
+    )
+
+    usuarios = Relationship(
+        "usuario", secondary=usuarios_eventos, back_populates="eventos"
     )

@@ -28,6 +28,6 @@ class imagen_evento(Base):
     id_usuario_crea = Column(UUID, ForeignKey("usuario.id_usuario"), nullable=False)
     fecha_creacion = Column(DateTime, nullable=False, default=datetime.now())
 
-    # agregar relaciones
+    # relaciones
     evento = Relationship("evento", back_populates="imagenes")
     usuario_crea = Relationship("usuario", back_populates="imagenes_eventos_creadas")
