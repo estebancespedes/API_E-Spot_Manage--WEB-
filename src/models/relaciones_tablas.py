@@ -28,3 +28,10 @@ usuarios_eventos = Table(
     Column("id_usuario", UUID, ForeignKey("usuario.id_usuario"), primary_key=True),
     Column("id_evento", UUID, ForeignKey("evento.id_evento"), primary_key=True),
 )
+
+etiquetas_eventos = Table(
+    "etiquetas_eventos",
+    Base.metadata,
+    Column("id_etiqueta", UUID, ForeignKey("etiqueta.id_etiqueta"), primary_key=True),
+    Column("id_evento", UUID, ForeignKey("evento.id_evento"), primary_key=True),
+)
