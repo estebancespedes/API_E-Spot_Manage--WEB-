@@ -18,7 +18,7 @@ def verify_password(password_ingressed: str, password_hash: str) -> bool:
     Metodo de verificacion si la contraseña es corecta o no
     Returns:
         True : contraseña correcta
-        False : contraseña incorrecta
+        False : contraseña incorrecta 
     '''
     password_ingressed = password_ingressed.encode(encoding="utf-8")
     password_hash = password_hash.encode(encoding="utf-8")

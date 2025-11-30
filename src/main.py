@@ -1,5 +1,5 @@
 from fastapi import Depends, FastAPI, HTTPException
-from starlette.status import HTTP_401_UNAUTHORIZED
+from starlette.status import HTTP_200_OK, HTTP_401_UNAUTHORIZED
 
 from src.core.config import settings
 
@@ -16,10 +16,10 @@ app = FastAPI(
 )
 
 
-@app.post("/Login", response_model= str, status_code=200)
+@app.post("/Login", status_code=HTTP_200_OK)
 def app_login(credentials: loginschema, db:Session = Depends(get_db)):
     user = login(correo=credentials.Correo, clave=credentials.clave, db=db)
     if user is None:
         raise HTTPException(status_code=HTTP_401_UNAUTHORIZED, detail='Usuario o contraseña incorrectos')
-    return gen_jwt(user.id_usuario, org_id=user.id_organizacion,rol_id=user.id_rol)
+    return gen_jwt(user_id=str(user.id_usuario), org_id=str(user.id_organizacion),rol_id=str(user.id_rol))
 
