@@ -1,5 +1,4 @@
 # importaciones de librerias
-from turtle import back
 from sqlalchemy import Column, UUID, TEXT, ForeignKey, VARCHAR
 from sqlalchemy.orm import relationship
 from uuid import uuid4
