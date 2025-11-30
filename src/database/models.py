@@ -1,4 +1,5 @@
 from src.models.ciudad import ciudad
+from src.models.etiqueta import etiqueta
 from src.models.evento import evento
 from src.models.imagen_evento import imagen_evento
 from src.models.imagen_p_i import imagen_p_i
@@ -7,7 +8,7 @@ from src.models.pais import pais
 from src.models.punto_interes import punto_interes
 from src.models.region import region
 from src.models.relaciones_tablas import *
+from src.models.reporte import reporte
 from src.models.rol import rol
 from src.models.ubicacion import ubicacion
 from src.models.usuario import usuario
-from src.models.etiqueta import etiqueta

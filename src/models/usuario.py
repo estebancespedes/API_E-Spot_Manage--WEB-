@@ -26,12 +26,13 @@ class usuario(Base):
     """
 
     __tablename__ = "usuario"
+    __table_args__ = {'schema': 'e_spot_schema'}
 
     id_usuario = Column(UUID, primary_key=True, default=uuid4())
     id_organizacion = Column(
-        UUID, ForeignKey("organizacion.id_organizacion"), nullable=True
+        UUID, ForeignKey("e_spot_schema.organizacion.id_organizacion"), nullable=True
     )
-    id_rol = Column(UUID, ForeignKey("rol.id_rol"), nullable=False)
+    id_rol = Column(UUID, ForeignKey("e_spot_schema.rol.id_rol"), nullable=False)
     nombre_1 = Column(VARCHAR(50), nullable=False)
     nombre_2 = Column(VARCHAR(50), nullable=True)
     apellido_1 = Column(VARCHAR(50), nullable=False)
@@ -44,7 +45,7 @@ class usuario(Base):
     imagenes_eventos_creadas = Relationship(
         "imagen_evento", back_populates="usuario_crea"
     )
-    imagenes_pi_creadas = Relationship("imagen_PI", back_populates="usuario_creacion")
+    imagenes_pi_creadas = Relationship("imagen_p_i", back_populates="usuario_creacion")
     eventos_creados = Relationship(
         "evento",
         foreign_keys="[evento.id_usuario_crea]",

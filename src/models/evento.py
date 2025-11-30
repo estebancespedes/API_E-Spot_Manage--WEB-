@@ -3,7 +3,7 @@ from datetime import datetime
 from sqlalchemy import Column, UUID, VARCHAR, TEXT, DateTime, FLOAT, ForeignKey
 from uuid import uuid4
 
-from sqlalchemy.orm import Relationship
+from sqlalchemy.orm import relationship
 
 # importación del modelo base
 from src.models.relaciones_tablas import (
@@ -33,6 +33,7 @@ class evento(Base):
     """
 
     __tablename__ = "evento"
+    __table_args__ = {"schema": "e_spot_schema"}
 
     id_evento = Column(UUID, primary_key=True, default=uuid4())
     nombre = Column(VARCHAR(50), nullable=False)
@@ -41,34 +42,36 @@ class evento(Base):
     fecha_fin = Column(DateTime, nullable=False)
     url_info = Column(VARCHAR(100), nullable=True)
     valor = Column(FLOAT, nullable=True)
-    id_usuario_crea = Column(UUID, ForeignKey("usuario.id_usuario"), nullable=False)
+    id_usuario_crea = Column(
+        UUID, ForeignKey("e_spot_schema.usuario.id_usuario"), nullable=False
+    )
     fecha_creacion = Column(DateTime, nullable=False, default=datetime.now())
-    id_usuario_edita = Column(UUID, ForeignKey("usuario.id_usuario"), nullable=True)
+    id_usuario_edita = Column(
+        UUID, ForeignKey("e_spot_schema.usuario.id_usuario"), nullable=True
+    )
     fecha_edicion = Column(DateTime, nullable=True, onupdate=datetime.now())
 
     # relaciones
-    imagenes = Relationship("imagen_evento", back_populates="evento")
-    ubicaciones = Relationship(
+    imagenes = relationship("imagen_evento", back_populates="evento")
+    ubicaciones = relationship(
         "ubicacion", secondary=eventos_ubicaciones, back_populates="eventos"
     )
-    organizaciones = Relationship(
+    organizaciones = relationship(
         "organizacion", secondary=organizaciones_eventos, back_populates="eventos"
     )
-    usuario_creacion = Relationship(
+    usuario_creacion = relationship(
         "usuario", foreign_keys=[id_usuario_crea], back_populates="eventos_creados"
     )
-    usuario_edicion = Relationship(
+    usuario_edicion = relationship(
         "usuario", foreign_keys=[id_usuario_edita], back_populates="eventos_editados"
     )
 
-    usuarios = Relationship(
+    usuarios = relationship(
         "usuario", secondary=usuarios_eventos, back_populates="eventos"
     )
 
-    etiquetas = Relationship(
-        "evento", secondary=etiquetas_eventos, back_populates="eventos"
+    etiquetas = relationship(
+        "etiqueta", secondary=etiquetas_eventos, back_populates="eventos"
     )
 
-    reportes = Relationship(
-        "reportes", back_populates="evento"
-    )
+    reportes = relationship("reporte", back_populates="evento")

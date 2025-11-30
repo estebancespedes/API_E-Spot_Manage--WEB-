@@ -27,6 +27,7 @@ class ubicacion(Base):
     """
 
     __tablename__ = "ubicacion"
+    __table_args__ = {"schema": "e_spot_schema"}
 
     id_ubicacion = Column(UUID, primary_key=True, default=uuid4())
     direccion = Column(VARCHAR(50), nullable=False)
@@ -34,14 +35,21 @@ class ubicacion(Base):
     complemento_2 = Column(VARCHAR(30), nullable=True)
     latitud = Column(FLOAT, nullable=False)
     longitud = Column(FLOAT, nullable=False)
-    id_usuario_crea = Column(UUID, ForeignKey("usuario.id_usuario"), nullable=False)
+    id_ciudad = Column(
+        UUID, ForeignKey("e_spot_schema.ciudad.id_ciudad"), nullable=False
+    )
+    id_usuario_crea = Column(
+        UUID, ForeignKey("e_spot_schema.usuario.id_usuario"), nullable=False
+    )
     fecha_crea = Column(DateTime, nullable=False, default=datetime.now())
-    id_usuario_edita = Column(UUID, ForeignKey("usuario.id_usuario"), nullable=True)
+    id_usuario_edita = Column(
+        UUID, ForeignKey("e_spot_schema.usuario.id_usuario"), nullable=True
+    )
     fecha_edita = Column(DateTime, nullable=True, onupdate=datetime.now())
 
     # relaciones
     ciudad = Relationship("ciudad", back_populates="ubicaciones")
-    puntos_interes = Relationship("punto interes", back_populates="ubicacion")
+    puntos_interes = Relationship("punto_interes", back_populates="ubicacion")
     usuario_creacion = Relationship(
         "usuario", foreign_keys=[id_usuario_crea], back_populates="ubicaciones_creadas"
     )
@@ -51,5 +59,5 @@ class ubicacion(Base):
         back_populates="ubicaciones_editadas",
     )
     eventos = Relationship(
-        "eventos", secondary=eventos_ubicaciones, back_populates="ubicaciones"
+        "evento", secondary=eventos_ubicaciones, back_populates="ubicaciones"
     )

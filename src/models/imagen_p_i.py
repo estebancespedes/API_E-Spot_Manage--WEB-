@@ -1,7 +1,7 @@
 # importaciones de librerias
 from datetime import datetime
 from sqlalchemy import Column, UUID, DateTime, ForeignKey, VARCHAR
-from sqlalchemy.orm import Relationship
+from sqlalchemy.orm import relationship
 from uuid import uuid4
 
 # importacion del modelo base
@@ -22,15 +22,16 @@ class imagen_p_i(Base):
     """
 
     __tablename__ = "imagen_PI"
+    __table_args__ = {'schema': 'e_spot_schema'}
 
     id_imagen = Column(UUID, primary_key=True, default=uuid4())
     id_punto_interes = Column(
-        UUID, ForeignKey("punto_interes.id_punto_interes"), nullable=False
+        UUID, ForeignKey("e_spot_schema.punto_interes.id_punto_interes"), nullable=False
     )
     url = Column(VARCHAR(100), nullable=False)
-    id_usuario_crea = Column(UUID, ForeignKey("usuario.id_usuario"), nullable=False)
+    id_usuario_crea = Column(UUID, ForeignKey("e_spot_schema.usuario.id_usuario"), nullable=False)
     fecha_crea = Column(DateTime, default=datetime.now(), nullable=False)
 
     # relaciones
-    punto_interes = Relationship("punto_interes", back_populates="imagenes_PI")
-    usuario_creacion = Relationship("usuario", back_populates="imagenes_pi_creadas")
+    punto_interes = relationship("punto_interes", back_populates="imagenes_PI")
+    usuario_creacion = relationship("usuario", back_populates="imagenes_pi_creadas")

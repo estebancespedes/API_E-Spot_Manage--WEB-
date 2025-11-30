@@ -1,6 +1,6 @@
 # importacciones de librerias
 from sqlalchemy import Column, UUID, VARCHAR
-from sqlalchemy.orm import Relationship
+from sqlalchemy.orm import relationship
 from uuid import uuid4
 
 # importacion de base model
@@ -17,9 +17,10 @@ class pais(Base):
     """
 
     __tablename__ = "pais"
+    __table_args__ = {'schema': 'e_spot_schema'}
 
     id_pais = Column(UUID, primary_key=True, default=uuid4())
     nombre = Column(VARCHAR(50), index=True, nullable=False)
 
     # relaciones
-    regiones = Relationship("region", back_populates="pais")
+    regiones = relationship("region", back_populates="pais")
