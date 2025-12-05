@@ -1,6 +1,7 @@
 alembic==1.16.5
 annotated-types==0.7.0
 anyio==4.11.0
+asyncpg==0.31.0
 bcrypt==5.0.0
 certifi==2025.10.5
 cffi==2.0.0
@@ -12,6 +13,7 @@ email-validator==2.3.0
 fastapi==0.118.0
 fastapi-cli==0.0.13
 fastapi-cloud-cli==0.3.0
+fastapi-pagination==0.15.1
 greenlet==3.2.4
 h11==0.16.0
 httpcore==1.0.9
