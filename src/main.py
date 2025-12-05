@@ -1,3 +1,4 @@
+from fastapi_pagination import add_pagination
 from sqlalchemy import text
 from fastapi import Depends, FastAPI, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -10,11 +11,15 @@ from src.schemas.login import login as loginschema, loginResponse as LoginRespon
 from src.CRUD.login import *
 from src.auth.token_auth import *
 
+#import de routers
+from src.API.routes.Eventos import router as router_ev
+
 app = FastAPI(
     title=settings.PROJECT_NAME,
     description=settings.PROJECT_DESCRIPTION,
     version=settings.PROJECT_VERSION,
 )
+add_pagination(app)
 
 
 @app.get("/", status_code=status.HTTP_200_OK, tags=["Raiz"])
@@ -56,3 +61,4 @@ async def app_login(credentials: loginschema, db: AsyncSession = Depends(get_db)
 
 
 # inclusion de los routers
+app.include_router(router=router_ev)

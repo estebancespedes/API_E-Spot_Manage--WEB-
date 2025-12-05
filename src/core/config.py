@@ -11,6 +11,10 @@ class Settings(BaseSettings):
     SECRETAPI_KEY: str
     ALGORITHM: str
 
+    ORGANIZADOR_EMPLEADO : str
+    ORGANIZADOR_ADMINISTRADOR :str
+    ADMINISTRADOR :str
+    USUARIO : str 
     class Config:
         env_file = ".env"
 
